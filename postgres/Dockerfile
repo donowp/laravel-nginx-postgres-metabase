@@ -1,0 +1,13 @@
+FROM postgres:14.0
+
+COPY ./postgres/init.sql /docker-entrypoint-initdb.d/
+ARG db_name
+ARG db_user=postgres
+ARG db_password=postgres
+ARG db_port=5432
+
+ENV POSTGRES_DB=${db_name}
+ENV POSTGRES_USER=${db_user}
+ENV POSTGRES_PASSWORD=${db_password}
+
+EXPOSE $db_port
